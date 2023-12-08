@@ -44,7 +44,7 @@ print("Loading modules completed.")
 print("Trying to connect to App store")
 try:
     response = requests.get(
-        'https://raw.githubusercontent.com/catko6583/Niko-XP/main/thisversion.txt')
+        'https://pastebin.com/raw/V4AxdhXy')
     data = response.text
     print("Connected!")
 except Exception as e:
