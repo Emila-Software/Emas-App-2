@@ -50,3 +50,13 @@ try:
 except Exception as e:
         print('Unable to Connect to the App Store, Error:' + str(e))
 print("Moving to checking for updates")
+try:
+    response = requests.get(
+        'https://raw.githubusercontent.com/Emila-Software/Emas-App-2/main/version')
+    data = response.text
+    if not data == "404: Not Found":
+        print("Connected!")
+    else:
+        print("Unabble to check for updates")
+except Exception as e:
+        print('Unable to check for updates, Error:' + str(e))
