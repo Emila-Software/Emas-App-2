@@ -77,6 +77,13 @@ try:
 except Exception as e:
         print('Unable to check for updates, Error:' + str(e))
 
+#if version > data:
+#    print("Warning! Local version bigger than the online version!")
+#    print("For security reasons Emas App 2 is now turning off")
+#   exit()
+#else:
+#    pass
+
 if not data == version:
     print("Update found! please update when system has fully booted")
 print("Checking for updates completed")
@@ -89,6 +96,31 @@ print("Users loaded")
 
 print("Deffining functions")
 
+def shutdown_computer():
+    if os.name == 'nt':
+        # For Windows operating system
+        os.system('shutdown /s /t 0')
+    elif os.name == 'posix':
+        # For Unix/Linux/Mac operating systems
+        os.system('sudo shutdown now')
+    else:
+        print('Unsupported operating system.')
+
+
+def shutdown_program():
+    exit()
+
+def shutdown_options():
+    shutdown_menu = tk.Tk()
+    shutdown_menu.title("Power menu")
+    shutdown_menu.resizable(False, False)
+    power = Button(shutdown_menu, text='Shutdown computer', command=lambda: shutdown_computer())
+    power.pack()
+    turnoff = Button(shutdown_menu, text='Shutdown Emas App 2', command=lambda: shutdown_program())
+    turnoff.pack()
+    shutdown_menu.mainloop()
+
+
 def create_menu(button):
     # Get the button position and size
     x, y, width, height = button.bbox()
@@ -97,7 +129,7 @@ def create_menu(button):
     new_menu = tk.Menu(button, tearoff=0)
 
     # Add apps to the menu
-    new_menu.add_command(label="App 1", command = "")
+    new_menu.add_command(label="Power menu", command = "shutdown_options")
     new_menu.add_command(label="App 2", command = "")
     new_menu.add_command(label="App 3", command = "")
 
@@ -119,6 +151,7 @@ def checkingdata():
     username = userna.get()
     password = passworda.get()
     passwordcorrect = False
+    usernamecorrect = False
     for x in users:
         if not x == username:
             continue
@@ -148,6 +181,7 @@ def checkingdata():
         passworda.destroy()
         lavel = Label(root,text="Logged in :)",)
         lavel.pack(pady=20)
+        lavel.after(3000,lambda: lavel.destroy())
         main(username)
 
 
