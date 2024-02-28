@@ -128,13 +128,26 @@ def create_menu(button):
     # Create a new menu above the button
     new_menu = tk.Menu(button, tearoff=0)
 
+    # Add shutdown menu to the menu
+    new_menu.add_command(label="Shutdown", command=shutdown_options)
+
+    # Find Python files in the apps folder
+    app_files = [f for f in os.listdir('apps') if f.endswith('.py') and not f.startswith('__')]
+
     # Add apps to the menu
-    new_menu.add_command(label="Power menu", command = "shutdown_options")
-    new_menu.add_command(label="App 2", command = "")
-    new_menu.add_command(label="App 3", command = "")
+    for app_file in app_files:
+        app_name = os.path.splitext(app_file)[0]
+        new_menu.add_command(label=app_name, command=lambda app=app_name: run_app(app))
 
     # Display the menu at the correct position
     new_menu.post(y, x)
+
+def run_app(app_name):
+    # Run the app using exec
+    app_path = os.path.join('apps', f'{app_name}.py')
+    with open(app_path) as f:
+        code = compile(f.read(), app_name, 'exec')
+        exec(code)
 
 def on_button_click(button):
     create_menu(button)
