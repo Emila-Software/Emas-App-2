@@ -1,0 +1,1 @@
+This is a example of a file in the apps folder that doesnt end with .py

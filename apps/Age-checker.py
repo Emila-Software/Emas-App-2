@@ -1,3 +1,4 @@
+#Example program
 print("Input age!")
 age = int(input())
 if age < 18:
