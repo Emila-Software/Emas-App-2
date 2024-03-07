@@ -101,12 +101,12 @@ try:
 except Exception as e:
         print('Unable to check for updates, Error:' + str(e))
 
-#if version > data:
-    #print("Warning! Local version bigger than the online version!")
-    #print("For security reasons Emas App 2 is now turning off")
-    #exit()
-#else:
-    #pass
+if version > data:
+    print("Warning! Local version bigger than the online version!")
+    print("For security reasons Emas App 2 is now turning off")
+    exit()
+else:
+    pass
 
 if not data == version:
     print("Update found! please update when system has fully booted")
