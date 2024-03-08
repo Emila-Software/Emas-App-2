@@ -132,7 +132,7 @@ def shutdown_computer(override=False, overrideauth=""):
         print("Override activated")
         confirmation = True
     if confirmation == True:
-     if os.name == 'na':
+     if os.name == 'nt':
           # For Windows operating system
           os.system('shutdown /s /t 0')
      elif os.name == 'posix':
